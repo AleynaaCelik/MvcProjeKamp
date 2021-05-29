@@ -76,6 +76,30 @@
     <Compile Include="Migrations\202105152151273_mig_writer_edit.designer.cs">
       <DependentUpon>202105152151273_mig_writer_edit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105241354277_mig_writertitle_add.cs" />
+    <Compile Include="Migrations\202105241354277_mig_writertitle_add.designer.cs">
+      <DependentUpon>202105241354277_mig_writertitle_add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105262244535_mig_imagesizechange.cs" />
+    <Compile Include="Migrations\202105262244535_mig_imagesizechange.designer.cs">
+      <DependentUpon>202105262244535_mig_imagesizechange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105262314513_mig_imagesizechange1.cs" />
+    <Compile Include="Migrations\202105262314513_mig_imagesizechange1.designer.cs">
+      <DependentUpon>202105262314513_mig_imagesizechange1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105280724189_mig_writer_addstatus.cs" />
+    <Compile Include="Migrations\202105280724189_mig_writer_addstatus.designer.cs">
+      <DependentUpon>202105280724189_mig_writer_addstatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105291205149_mig_contentstatusadd.cs" />
+    <Compile Include="Migrations\202105291205149_mig_contentstatusadd.designer.cs">
+      <DependentUpon>202105291205149_mig_contentstatusadd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105291221598_mig_headingstatusadd.cs" />
+    <Compile Include="Migrations\202105291221598_mig_headingstatusadd.designer.cs">
+      <DependentUpon>202105291221598_mig_headingstatusadd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -95,6 +119,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105152151273_mig_writer_edit.resx">
       <DependentUpon>202105152151273_mig_writer_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105241354277_mig_writertitle_add.resx">
+      <DependentUpon>202105241354277_mig_writertitle_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105262244535_mig_imagesizechange.resx">
+      <DependentUpon>202105262244535_mig_imagesizechange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105262314513_mig_imagesizechange1.resx">
+      <DependentUpon>202105262314513_mig_imagesizechange1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105280724189_mig_writer_addstatus.resx">
+      <DependentUpon>202105280724189_mig_writer_addstatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105291205149_mig_contentstatusadd.resx">
+      <DependentUpon>202105291205149_mig_contentstatusadd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105291221598_mig_headingstatusadd.resx">
+      <DependentUpon>202105291221598_mig_headingstatusadd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
