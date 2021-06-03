@@ -1,4 +1,5 @@
 ﻿@model EntityLayer.Concrete.Contact
+
 @{
     ViewBag.Title = "GetContactDetails";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -28,7 +29,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                @Html.Action("ContactSideBarPartial", "Contact")
+                @Html.Action("MessageListMenu", "Contact")
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="card card-primary card-outline">
@@ -84,4 +85,3 @@
     </section>
 </body>
 </html>
-
