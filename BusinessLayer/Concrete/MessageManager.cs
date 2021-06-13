@@ -12,15 +12,20 @@ namespace BusinessLayer.Concrete
     public class MessageManager : IMessageService
     {
         IMessageDal _messageDal;
-
         public MessageManager(IMessageDal messageDal)
         {
             _messageDal = messageDal;
         }
 
-        public Message GetById(int id)
+        public Message GetByID(int id)
         {
-            throw new NotImplementedException();
+            return _messageDal.Get(x => x.MessageID == id);
+        }
+
+        public List<Message> GetListDraft()
+        {
+
+            return _messageDal.List(x => x.MessageStatus == "Taslak");
         }
 
         public List<Message> GetListInbox()
@@ -33,6 +38,21 @@ namespace BusinessLayer.Concrete
             return _messageDal.List(x => x.SenderMail == "admin@gmail.com");
         }
 
+        public List<Message> GetListTrash()
+        {
+            return _messageDal.List(x => x.MessageStatus == "Çöp");
+        }
+
+        public List<Message> GetReadList()
+        {
+            return _messageDal.List(x => x.MessageRead == true);
+        }
+
+        public List<Message> GetUnReadList()
+        {
+            return _messageDal.List(x => x.MessageRead == false);
+        }
+
         public void MessageAdd(Message message)
         {
             _messageDal.Insert(message);
@@ -40,12 +60,12 @@ namespace BusinessLayer.Concrete
 
         public void MessageDelete(Message message)
         {
-            throw new NotImplementedException();
+            _messageDal.Delete(message);
         }
 
         public void MessageUpdate(Message message)
         {
-            throw new NotImplementedException();
+            _messageDal.Update(message);
         }
     }
 }

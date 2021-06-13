@@ -1,5 +1,6 @@
 ﻿using EntityLayer.Concrete;
 using FluentValidation;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +23,7 @@ namespace BusinessLayer.ValidationRules
             RuleFor(x => x.MessageContent).MinimumLength(10).WithMessage(" Mesaj içeriği en az 10 karakter olmalı");
 
         }
+
+        
     }
 }
