@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -39,9 +40,19 @@ namespace MvcProjeKampi.Roles
 
         public override string[] GetRolesForUser(string username)
         {
-            AdminManager an = new AdminManager(new EfAdminDal());
-            var result = an.GetByUserName(username);
-            return new string[] { result.AdminRole };
+            Context c = new Context();
+            var x = c.Admins.Where(y => y.AdminUserName == username).FirstOrDefault();
+            var resultWriter = c.Writers.FirstOrDefault(d => d.WriterMail == username);
+
+            if (x != null)
+            {
+                return new string[] { x.AdminRole };
+            }
+            else if (resultWriter != null)
+            {
+                return new string[] { resultWriter.WriterRole };
+            }
+            return new string[] { };
         }
 
         public override string[] GetUsersInRole(string roleName)
