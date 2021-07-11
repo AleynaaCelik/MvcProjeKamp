@@ -9,10 +9,10 @@ namespace BusinessLayer.Abstract
 {
     public interface ITalentService
     {
-        List<Talent> GetList();
-        void TalentAdd(Talent talent);
-        Talent GetByID(int id);
-        void TalentDelete(Talent talent);
-        void TalentUpdate(Talent talent);
+        List<Talent> GetTalents();
+        void Insert(Talent talent);
+        void Update(Talent talent);
+        void Delete(Talent talent);
+        Talent GetById(int id);
     }
 }

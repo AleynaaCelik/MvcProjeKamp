@@ -3,18 +3,24 @@
     ViewBag.Title = "AddTalent";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h1>Yeni Yetenek Ekleme Sayfası</h1>
-<br />
+
+<h2>Yetenek Ekle</h2>
+
+
 @using (Html.BeginForm("AddTalent", "Talent", FormMethod.Post))
 {
     <div class="form-group">
-        @Html.Label("Yetenek Adı")
-        @Html.TextBoxFor(x => x.TalentName, new { @class = "form-control" })
-        <br /><br />
-        @Html.Label("Yetenek Derecen")
-        @Html.TextBoxFor(x => x.Percent, new { @class = "form-control" })
-        <br /><br />
-        <button class="btn btn-primary">Kaydet</button>
+        <div class="col-md-5">
+            @Html.Label("Yetenek Adı")
+            @Html.TextBoxFor(t => t.TalentName, new { @class = "form-control" })
+        </div>
+        <br />
+        <div class="col-md-5">
+            @Html.Label("Oran")
+            @Html.EditorFor(t => t.Range, new { htmlAttributes = new { @class = "form-control" } })
+            <br />
+        </div>
+
+        <button class=" btn btn-outline-success">Ekle</button>
     </div>
 }
-

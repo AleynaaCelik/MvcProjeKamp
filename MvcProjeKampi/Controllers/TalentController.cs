@@ -9,30 +9,43 @@ using System.Web.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
-    [Authorize]
     public class TalentController : Controller
     {
-        TalentManager tm = new TalentManager(new EfTalentDal());
+        // GET: Talent
+        TalentManager talentManager = new TalentManager(new EfTalentDal());
         public ActionResult Index()
         {
-            var degerler = tm.GetList();
-
-            return View(degerler);
+            var result = talentManager.GetTalents();
+            return View(result);
         }
         [HttpGet]
         public ActionResult AddTalent()
         {
             return View();
         }
-
         [HttpPost]
-        public ActionResult AddTalent(Talent p)
+        public ActionResult AddTalent(Talent talent)
         {
-            p.Name = "Taner Saydam";
-            p.About = "Yazılım yapmayı seviyorum";
-            tm.TalentAdd(p);
+            talentManager.Insert(talent);
             return RedirectToAction("Index");
         }
-
+        [HttpGet]
+        public ActionResult EditTalent(int id)
+        {
+            var result = talentManager.GetById(id);
+            return View(result);
+        }
+        [HttpPost]
+        public ActionResult EditTalent(Talent talent)
+        {
+            talentManager.Update(talent);
+            return RedirectToAction("Index");
+        }
+        public ActionResult DeleteTalent(int Id)
+        {
+            var result = talentManager.GetById(Id);
+            talentManager.Delete(result);
+            return RedirectToAction("Index");
+        }
     }
 }

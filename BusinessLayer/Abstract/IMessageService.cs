@@ -13,7 +13,7 @@ namespace BusinessLayer.Abstract
         List<Message> GetUnReadList();
         List<Message> GetListInbox();
         List<Message> GetListSendbox();
-        List<Message> GetListDraft();
+        List<Message> GetListDraft(string p);
         List<Message> GetListTrash();
         void MessageAdd(Message message);
         Message GetByID(int id);

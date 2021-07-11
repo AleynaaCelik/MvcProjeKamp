@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -13,81 +14,57 @@ namespace MvcProjeKampi.Controllers
 {
     public class WriterPanelMessageController : Controller
     {
-        
-        MessageManager mn = new MessageManager(new EfMessageDal());
-        ContactManager cm = new ContactManager(new EfContactDal());
-        WriterManager vm = new WriterManager(new EfWriterDal());
+        // GET: WriterPanelMessage
+        MessageManager messagemanager = new MessageManager(new EfMessageDal());
         MessageValidator messagevalidator = new MessageValidator();
+        DraftManager draftManager = new DraftManager(new EfDraftDal());
+        DraftController draftController = new DraftController();
+        Context _context = new Context();
 
         public ActionResult Inbox()
         {
-            var messagelist = mn.GetListInbox();
+            string p = (string)Session["WriterMail"];
+            var messagelist = messagemanager.GetListInbox();
             return View(messagelist);
         }
         public ActionResult SendBox()
         {
-            var messagelist = mn.GetListSendbox();
+            string p = (string)Session["WriterMail"];
+            var messagelist = messagemanager.GetListSendbox();
             return View(messagelist);
         }
-        public ActionResult Read() 
-        {
-            var deger = mn.GetReadList();
-            return View(deger);
-        }
-        public ActionResult UnRead() 
-        {
-            var deger = mn.GetUnReadList();
-            return View(deger);
-        }
-        public ActionResult Draft() 
-        {
-            var deger = mn.GetListDraft();
-            return View(deger);
-        }
-        public ActionResult Trash() 
-        {
-            var deger = mn.GetListTrash();
-            return View(deger);
-        }
-        public PartialViewResult GelenKutuSolMenu() 
-        {
-            var contactvalues = cm.GetList();
-            ViewBag.sayi = contactvalues.Count();
-
-            var deger1 = mn.GetListInbox();
-            ViewBag.sayi1 = deger1.Count();
-
-            var deger2 = mn.GetListSendbox();
-            ViewBag.sayi2 = deger2.Count();
-
-            var deger3 = mn.GetListDraft();
-            ViewBag.sayi3 = deger3.Count();
-
-            var deger4 = mn.GetListTrash();
-            ViewBag.sayi4 = deger4.Count();
-
-            var deger5 = mn.GetReadList();
-            ViewBag.sayi5 = deger5.Count();
-
-            var deger6 = mn.GetUnReadList();
-            ViewBag.sayi6 = deger6.Count();
-            return PartialView();
-
-        }
-
         public PartialViewResult MessageListMenu()
         {
+
+            string p = (string)Session["WriterMail"];
+            var writeridinfo = _context.Writers.Where(x => x.WriterMail == p).Select(y => y.WriterID).FirstOrDefault();
+
+
+            var receiverMail = _context.Messages.Count(m => m.ReceiverMail == p).ToString();
+            ViewBag.receiverMail = receiverMail;
+
+            var senderMail = _context.Messages.Count(m => m.SenderMail == p).ToString();
+            ViewBag.senderMail = senderMail;
+
+            var draft = _context.Drafts.Count().ToString();
+            ViewBag.draft = draft;
+
             return PartialView();
         }
-        public ActionResult GetInboxMessageDetails(int id)
+        public ActionResult Draft()
         {
-            var Values = mn.GetByID(id);
-            return View(Values);
+            var draftValues = draftManager.GetList();
+            return View(draftValues);
         }
-        public ActionResult GetSendboxMessageDetails(int id)
+        public ActionResult GetSendBoxMessageDetails(int id)
         {
-            var Values = mn.GetByID(id);
-            return View(Values);
+            var messagevalues = messagemanager.GetByID(id);
+            return View(messagevalues);
+        }
+        public ActionResult GetInBoxMessageDetails(int id)
+        {
+            var inboxvalues = messagemanager.GetByID(id);
+            return View(inboxvalues);
         }
         [HttpGet]
         public ActionResult NewMessage()
@@ -95,14 +72,16 @@ namespace MvcProjeKampi.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult NewMessage(Message x)
+        public ActionResult NewMessage(Message p)
         {
-            ValidationResult results = messagevalidator.Validate(x);
+            string sender = (string)Session["WriterMail"];
+            ValidationResult results = messagevalidator.Validate(p);
+            results = messagevalidator.Validate(p);
             if (results.IsValid)
             {
-                x.SenderMail = "gizem@hotmail.com";
-                x.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                mn.MessageAdd(x);
+                p.SenderMail = sender;
+                p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                messagemanager.MessageAdd(p);
                 return RedirectToAction("SendBox");
             }
             else
@@ -112,7 +91,9 @@ namespace MvcProjeKampi.Controllers
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
+
             return View();
         }
     }
 }
+  

@@ -18,28 +18,27 @@ namespace BusinessLayer.Concrete
             _talentDal = talentDal;
         }
 
-        public Talent GetByID(int id)
-        {
-            return _talentDal.Get(x => x.TalentID == id);
-        }
-
-        public List<Talent> GetList()
-        {
-            return _talentDal.List();
-        }
-
-        public void TalentAdd(Talent talent)
-        {
-
-            _talentDal.Insert(talent);
-        }
-
-        public void TalentDelete(Talent talent)
+        public void Delete(Talent talent)
         {
             _talentDal.Delete(talent);
         }
 
-        public void TalentUpdate(Talent talent)
+        public Talent GetById(int id)
+        {
+            return _talentDal.Get(t => t.TalentID == id);
+        }
+
+        public List<Talent> GetTalents()
+        {
+            return _talentDal.List();
+        }
+
+        public void Insert(Talent talent)
+        {
+            _talentDal.Insert(talent);
+        }
+
+        public void Update(Talent talent)
         {
             _talentDal.Update(talent);
         }

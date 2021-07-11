@@ -1,14 +1,24 @@
-﻿
+﻿@using EntityLayer.Concrete
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Heading>
+
 @{
     ViewBag.Title = "AllHeading";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
 
-@{ string color = "";}
+
+@{
+    string color = "";
+    string Image = "";
+}
+
 <!DOCTYPE html>
 <html>
 
 <body class="hold-transition sidebar-mini">
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -25,7 +35,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Başlık İşlemleri </h3>
+                <h3 class="card-title">Başlık İşlemleri</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -94,31 +104,32 @@
                                     </a>
                                     <br />
                                     <small>
-                                        @(((DateTime)item.HeadingDate).ToString("dd-MM-yyyy"))
+                                        @(((DateTime)item.HeadingDate).ToString("dd-MMM-yyyy"))
                                     </small>
                                 </td>
                                 <td>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
-                                            <img alt="Avatar" class="table-avatar" src="@item.Writer.WriterImage">
+                                            <img alt="Avatar" class="table-avatar" src="@Image">
                                         </li>
+
                                     </ul>
                                 </td>
                                 <td class="project-state">
                                     <span class="@color">@item.Category.CategoryName</span>
                                 </td>
                                 <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="/Default/Headings/
-                                       @item.HeadingID">
+                                    <a class="btn bg-primary btn-sm" href="/Default/Headings/@item.HeadingID">
                                         <i class="fas fa-folder">
                                         </i>
-                                        Yazılar
+                                        İçerik
                                     </a>
                                     <a class="btn btn-info btn-sm" href="/WriterPanelContent/AddContent/@item.HeadingID">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Bu Başlığa Yaz
                                     </a>
+
                                 </td>
                             </tr>
                         }
@@ -130,8 +141,11 @@
         <!-- /.card -->
 
     </section>
+
 </body>
 </html>
-
-
-
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("AllHeading", new { sayfa }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+    {"page-link"}
+})

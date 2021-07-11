@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-   public  interface IWriterLoginService
+   public interface IWriterLoginService
     {
         Writer GetWriter(string username, string password);
     }

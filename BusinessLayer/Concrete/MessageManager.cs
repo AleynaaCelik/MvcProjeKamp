@@ -22,7 +22,7 @@ namespace BusinessLayer.Concrete
             return _messageDal.Get(x => x.MessageID == id);
         }
 
-        public List<Message> GetListDraft()
+        public List<Message> GetListDraft(string p)
         {
 
             return _messageDal.List(x => x.MessageStatus == "Taslak");
