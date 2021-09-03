@@ -20,6 +20,10 @@ namespace EntityLayer.Concrete
 
         [StringLength(1)]
         public string AdminRole { get; set; }
-      
+
+        public bool AdminStatus { get; set; }
+
+        public int? RoleId { get; set; }
+        public virtual Roller Roller { get; set; }
     }
 }

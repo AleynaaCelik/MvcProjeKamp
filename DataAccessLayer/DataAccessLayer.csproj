@@ -61,6 +61,8 @@
     <Compile Include="Abstract\IImageFileDal.cs" />
     <Compile Include="Abstract\IMessageDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IRollerDal.cs" />
+    <Compile Include="Abstract\ITalentCardDal.cs" />
     <Compile Include="Abstract\ITalentDal.cs" />
     <Compile Include="Abstract\IWriterDal.cs" />
     <Compile Include="Concrete\Context.cs" />
@@ -76,6 +78,8 @@
     <Compile Include="EntityFramework\EfHeadingDal.cs" />
     <Compile Include="EntityFramework\EfImageFileDal.cs" />
     <Compile Include="EntityFramework\EfMessageDal.cs" />
+    <Compile Include="EntityFramework\EfRollerDal.cs" />
+    <Compile Include="EntityFramework\EfTalentCardDal.cs" />
     <Compile Include="EntityFramework\EfTalentDal.cs" />
     <Compile Include="EntityFramework\EfWriterDal.cs" />
     <Compile Include="Migrations\202105011618338_mig1.cs" />
@@ -142,6 +146,14 @@
     <Compile Include="Migrations\202106131537236_mig_add_talent.designer.cs">
       <DependentUpon>202106131537236_mig_add_talent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107111529491_add_mig.cs" />
+    <Compile Include="Migrations\202107111529491_add_mig.designer.cs">
+      <DependentUpon>202107111529491_add_mig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109031621032_mig_deneme.cs" />
+    <Compile Include="Migrations\202109031621032_mig_deneme.designer.cs">
+      <DependentUpon>202109031621032_mig_deneme.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -203,6 +215,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106131537236_mig_add_talent.resx">
       <DependentUpon>202106131537236_mig_add_talent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107111529491_add_mig.resx">
+      <DependentUpon>202107111529491_add_mig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109031621032_mig_deneme.resx">
+      <DependentUpon>202109031621032_mig_deneme.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

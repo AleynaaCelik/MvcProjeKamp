@@ -13,6 +13,7 @@ namespace MvcProjeKampi.Controllers
     public class AuthorizationController : Controller
     {
         AdminManager adminmanager = new AdminManager(new EfAdminDal());
+        RollerManager rollerManager = new RollerManager(new EfRollerDal());
         Context _context = new Context();
         // GET: Authorization
         public ActionResult Index()
@@ -33,8 +34,8 @@ namespace MvcProjeKampi.Controllers
         //}
         [HttpGet]
         public ActionResult EditAdmin(int id)
-        {
-           /* List<SelectListItem> valueadminrole = (from c in roleManager.GetRoles()
+       {
+            List<SelectListItem> valueadminrole = (from c in rollerManager.GetRoles()
                                                    select new SelectListItem
                                                    {
                                                        Text = c.RoleName,
@@ -42,7 +43,7 @@ namespace MvcProjeKampi.Controllers
 
                                                    }).ToList();
 
-            ViewBag.valueadmin = valueadminrole;*/
+            ViewBag.valueadmin = valueadminrole;
 
             var adminvalue = adminmanager.GetByID(id);
             return View(adminvalue);
@@ -50,10 +51,9 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult EditAdmin(Admin admin)
         {
-           // admin.AdminStatus = true;
+            admin.AdminStatus = true;
             adminmanager.AdminUpdate(admin);
             return RedirectToAction("Index");
         }
-  
-}
+    }
 }

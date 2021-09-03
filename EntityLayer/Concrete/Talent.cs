@@ -11,9 +11,7 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int TalentID { get; set; }
-        public string About { get; set; }
         public string TalentName { get; set; }
-        public string Percent { get; set; }
         public byte Range { get; set; }
     }
 }

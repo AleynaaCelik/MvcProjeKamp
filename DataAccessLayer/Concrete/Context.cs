@@ -21,7 +21,9 @@ namespace DataAccessLayer.Concrete
         public DbSet<Draft> Drafts { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Talent> Talents { get; set; }
-
+        public DbSet<TalentCard> TalentCards { get; set; }
+        public DbSet<Roller> Rollers{ get; set; }
+    
     }
    
 }
