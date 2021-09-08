@@ -62,7 +62,7 @@ namespace MvcProjeKampi.Controllers
         public ActionResult WriterLogin(Writer p)
         {
             var response = Request["g-recaptcha-response"];
-            const string secret = "6LfHFTwbAAAAAB53V5ZcixAgVCi2aTXIuF-eLxF9";
+            const string secret = "6LdZpEQcAAAAACTbPoC5ppz4ZhUq1TkCQi2iIglK";
             var client = new WebClient();
 
             var reply = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
@@ -70,7 +70,7 @@ namespace MvcProjeKampi.Controllers
             if (!captchaResponse.Success)
             {
                 ViewBag.ErrorMessage = "Kullanıcı Adı veya Şifreniz Yanlış!";
-                return View();
+                return RedirectToAction("WriterLogin");
             }
 
 
